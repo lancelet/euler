@@ -5,11 +5,11 @@ import scala.collection.Iterator
 import scala.collection.immutable.List
 import scala.collection.immutable.Vector
 import scala.math.Integral
+import scala.math.sqrt
 
 package object math {
 
-  /** Computes the sequence of prime numbers using the ''Sieve of 
-   *  Eratosthenes'' algorithm.
+  /** Computes the sequence of prime numbers using a repeated test sieve.
    *  
    *  @return an infinite Iterator, in which the `next()` method produces the
    *  next prime number. */
@@ -25,7 +25,7 @@ package object math {
           three
         } else {
           val xn = x + two
-          if (primeList.forall(xn % _ != 0)) {
+          if (!primeList.exists(xn % _ == 0)) {
             xn
           } else {
             sieve(xn)
@@ -39,6 +39,29 @@ package object math {
     private [this] var primeList: Vector[T] = Vector(two)
   }
   
+  /** Returns the primes below the given limit, using the ``Sieve of
+   *  Eratosthenes`` algorithm.
+   *  
+   *  @param limit upper limit (inclusive) on the maximum prime to return
+   *  @returns vector of primes less than or equal to the limit */
+  def eratosthenes(limit: Int): Vector[Int] = {
+    def ix(n: Int): Int = (n-3) / 2
+    val testArray: Array[Boolean] = Array.fill((limit - 1)/2)(true)
+    val testLimit = sqrt(limit).toInt + 2
+    var i: Int = 3
+    while (i < testLimit) {
+      var j: Int = i + i
+      while (j <= limit) {
+        if (j % 2 != 0) testArray(ix(j)) = false
+        j += i
+      }
+      i += 2
+      while (testArray(ix(i)) == false && i < testLimit) i += 2
+    }
+    Vector(2) ++ 
+      testArray.zipWithIndex.filter(_._1 == true).map(_._2 * 2 + 3)
+  }
+    
   /** Computes the Fibonacci sequence: 0, 1, 2, 3, 5, 8, ...
    * 
    *  @return an infinite Iterator, in which the `next()` method produces the
