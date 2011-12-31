@@ -4,7 +4,7 @@ import com.github.lancelet.euler.problems._
 
 object EulerMain {
 
-  val p0001to0025 = List(P0001, P0002, P0003)
+  val p0001to0025 = List(P0001, P0002, P0003, P0004)
   
   val problems: List[EulerProblem] = p0001to0025 ::: List.empty[EulerProblem]
   
