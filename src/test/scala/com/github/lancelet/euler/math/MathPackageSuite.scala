@@ -21,4 +21,16 @@ class MathPackageSuite extends FunSuite {
     assert(fibs === correct)
   }
   
+  test("the prime factors of 13195 are 5, 7, 13 and 29") {
+    val correct = List(5, 7, 13, 29)
+    val factors = primeFactors(13195)
+    assert(factors === correct)
+  }
+  
+  test("the prime factors of 256 are 2, 2, 2, 2, 2, 2, 2, 2") {
+    val correct = List(2, 2, 2, 2, 2, 2, 2, 2)
+    val factors = primeFactors(256)
+    assert(factors === correct)
+  }
+  
 }

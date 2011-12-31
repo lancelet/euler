@@ -3,6 +3,7 @@ package com.github.lancelet.euler
 import scala.annotation.tailrec
 import scala.collection.Iterator
 import scala.collection.immutable.List
+import scala.collection.immutable.Vector
 import scala.math.Integral
 
 package object math {
@@ -31,11 +32,11 @@ package object math {
           }
         }
       }
-      val lastPrime = primeList.head
-      primeList = sieve(lastPrime) :: primeList
+      val lastPrime = primeList.last
+      primeList = primeList :+ sieve(lastPrime)
       lastPrime
     }
-    private [this] var primeList: List[T] = List(two)
+    private [this] var primeList: Vector[T] = Vector(two)
   }
   
   /** Computes the Fibonacci sequence: 0, 1, 2, 3, 5, 8, ...
@@ -53,5 +54,38 @@ package object math {
       s0
     }
   }
+  
+  /** Computes the prime factors of a number.  The prime factors are returned
+   *  in increasing order.
+   * 
+   *  @param x number for which to compute the prime factors
+   *  @param primeStream stream of prime numbers to use for the computation.
+   *  The stream can be re-used among multiple calls to primeFactorsS, so that
+   *  the primes are cached.
+   *  @return the prime factors of `x`, sorted in increasing order. */
+  def primeFactorsS[T: Integral](x: T, primeStream: Stream[T]): List[T] = {
+    val integralType = implicitly[Integral[T]]
+    import integralType._
+    require(x >= fromInt(2), "x must be >= 2")
+    @tailrec
+    def accumFactors(factors: List[T], cands: Stream[T], x: T): List[T] = {
+      if (x == 1) {
+        factors
+      } else {
+        val ncands = cands.dropWhile(x % _ != 0)
+        val nprime = ncands.head
+        accumFactors(nprime :: factors, ncands, x / nprime)
+      }
+    }
+    accumFactors(List.empty[T], primeStream, x).reverse
+  }
+  
+  /** Computes the prime factors of a number.  The prime factors are returned
+   *  in increasing order.
+   *  
+   *  @param x number for which to compute the prime factors
+   *  @return the prime factors of `x`, sorted in increasing order. */
+  def primeFactors[T: Integral](x: T): List[T] = 
+    primeFactorsS(x, primeIteratorSieve[T].toStream)
   
 }
