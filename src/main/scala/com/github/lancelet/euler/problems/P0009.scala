@@ -10,8 +10,8 @@ object P0009 extends EulerProblem {
     val maxNum = 1000
     val (a,b,c) = (for {
       i <- 1 to maxNum
-      j <- i to maxNum
-      k <- j to maxNum
+      j <- i to (maxNum - i)
+      k <- j to (maxNum - i - j)
       if (i + j + k == 1000)
       if (i * i + j * j == k * k)
     } yield (i, j, k)).head
