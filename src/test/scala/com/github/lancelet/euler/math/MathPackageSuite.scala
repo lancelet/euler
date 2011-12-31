@@ -14,4 +14,11 @@ class MathPackageSuite extends FunSuite {
     assert(primes === correct)
   }
   
+  test("fibonacci produces the correct first 20 numbers") {
+    val correct = List(0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 
+                       55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181)
+    val fibs = fibonacci[Int].take(20).toList
+    assert(fibs === correct)
+  }
+  
 }
