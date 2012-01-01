@@ -45,4 +45,14 @@ class MathPackageSuite extends FunSuite {
     assert(factors === correct)
   }
   
+  test("28 has 6 divisors") {
+    assert(nDivisors(28) === 6)
+  }
+  
+  test("the first 10 triangle numbers are found correctly") {
+    val correct = List(1, 3, 6, 10, 15, 21, 28, 36, 45, 55)
+    val trinums = triangleNumbers[Int].take(10).toList
+    assert(trinums === correct)
+  }
+  
 }

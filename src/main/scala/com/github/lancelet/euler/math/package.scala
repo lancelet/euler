@@ -111,4 +111,37 @@ package object math {
   def primeFactors[T: Integral](x: T): List[T] = 
     primeFactorsS(x, primeIteratorSieve[T].toStream)
   
+  /** Computes the number of divisors of a number.
+   *  
+   *  @param x the number for which to compute the number of divisors.
+   *  @param primeStream a stream of prime numbers to use for the problem.
+   *  @return the number of divisors (including 1 and the number itself). */
+  def nDivisorsS(x: Int, primeStream: Stream[Int]): Int = {
+    val pf = primeFactorsS(x, primeStream)
+    val alphas = pf.groupBy(q => q).values.map(_.size + 1)
+    alphas.foldLeft(1)(_ * _)
+  }
+
+  /** Computes the number of divisors of a number.
+   *  
+   *  @param x the number for which to compute the number of divisors.
+   *  @return the number of divisors (including 1 and the number itself). */  
+  def nDivisors(x: Int) = nDivisorsS(x, eratosthenes(x).toStream)
+  
+  /** Returns an iterator over the triangle numbers.  The triangle numbers are
+   *  formed by adding the sequence of natural numbers. */
+  def triangleNumbers[T: Integral] = new Iterator[T] {
+    val integralType = implicitly[Integral[T]]
+    import integralType._
+    override val hasNext = true
+    override def next(): T = {
+      sum = sum + x
+      x = x + one
+      sum
+    }
+    private [this] val one: T = fromInt(1)
+    private [this] var x: T = one
+    private [this] var sum: T = fromInt(0)
+  }
+  
 }
