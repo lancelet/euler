@@ -15,6 +15,7 @@ import scala.collection.mutable.{Map => MMap}
  *  Note that, once a sequence is started, numbers may exceed 1000000. */
 object P0014 extends EulerProblem {
   val number = 14
+  override val expected = Some("837799") 
   def solution: String = {
    
     // Finds the length of the sequence, given a particular starting value.

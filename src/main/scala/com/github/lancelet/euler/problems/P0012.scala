@@ -6,6 +6,7 @@ import com.github.lancelet.euler.math._
 /** What is the first triangle number to have over 500 divisors? */
 object P0012 extends EulerProblem {
   val number = 12
+  override val expected = Some("76576500")
   def solution: String = {
     
     // stream of prime numbers

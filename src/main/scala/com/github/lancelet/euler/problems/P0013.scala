@@ -8,6 +8,7 @@ import scala.io.Source
  *  50-digit numbers. */
 object P0013 extends EulerProblem {
   val number = 13
+  override val expected = Some("5537376230")
   def solution: String = {
     
     // Read in the numbers

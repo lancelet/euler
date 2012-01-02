@@ -4,7 +4,8 @@ import com.github.lancelet.euler.EulerProblem
 /** Find the greatest product of 5 consecutive digits in a given 1000-digit
  *  number. */
 object P0008 extends EulerProblem {
-  val number: Int = 8
+  val number = 8
+  override val expected = Some("40824")
   def solution: String = {
     
 	val numStr: String = 

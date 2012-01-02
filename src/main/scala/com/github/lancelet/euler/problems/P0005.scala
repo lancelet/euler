@@ -8,7 +8,8 @@ import scala.collection.immutable.Set
 /** Find the smallest positive number that is evenly divisible by all of the
  *  numbers from 1 to 20. */
 object P0005 extends EulerProblem {
-  val number: Int = 5
+  val number = 5
+  override val expected = Some("232792560")
   def solution: String = {
     
     val testNum = List.range(2, 21)

@@ -4,7 +4,8 @@ import com.github.lancelet.euler.EulerProblem
 /** There exists exactly one Pythagorean triple for which a + b + c = 1000,
  *  and a < b < c.  Find the product a * b * c. */
 object P0009 extends EulerProblem {
-  val number: Int = 9
+  val number = 9
+  override val expected = Some("31875000")
   def solution: String = {
     
     val maxNum = 1000

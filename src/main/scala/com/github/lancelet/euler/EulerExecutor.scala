@@ -13,8 +13,17 @@ case class EulerExecutor(problems: List[EulerProblem]) {
   def execute() {
     val sortedProblems = problems.sortBy(_.number)
     for (problem <- sortedProblems) {
-      println("Problem: %d" format problem.number)
-      println("  Solution: %s" format problem.solution)
+      val number = problem.number
+      val solution = problem.solution
+      println("Problem: %d" format number)
+      println("  Solution: %s" format solution)
+      val expected = problem.expected
+      if (expected.isDefined) {
+        val e = expected.get
+        if (e != solution) {
+          println("  WARNING: Expected solution differs: %s" format e)
+        }
+      }
     }
   }
 

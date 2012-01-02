@@ -15,7 +15,8 @@ import scala.collection.immutable.Seq
  *    (2, 3), (2, 4),
  *    (3, 4) */
 object P0006 extends EulerProblem {
-  val number: Int = 6
+  val number = 6
+  override val expected = Some("25164150")
   def solution: String = {
     
     val N: Int = 100

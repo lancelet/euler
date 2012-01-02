@@ -8,7 +8,8 @@ import scala.collection.immutable.VectorBuilder
 /** In a given 20x20 grid, find the greatest product of 4 adjacent numbers
  *  (either vertically, horizontally or diagonally). */
 object P0011 extends EulerProblem {
-  val number: Int = 11
+  val number = 11
+  override val expected = Some("70600674")
   def solution: String = {
     
     // Basic grid of items.

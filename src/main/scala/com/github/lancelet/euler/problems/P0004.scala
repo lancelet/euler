@@ -4,7 +4,8 @@ import com.github.lancelet.euler.EulerProblem
 /** Find the largest palindrome made from the product of 2 x 3 digit numbers.
  */
 object P0004 extends EulerProblem {
-  val number: Int = 4
+  val number = 4
+  override val expected = Some("906609")
   def solution: String = {
     
     // Maximum possible number obtained from multiplying 2 x 3 digit numbers
