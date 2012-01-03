@@ -11,7 +11,14 @@ object EulerMain {
     P0016, P0017, P0018
   )
   
-  val problems: List[EulerProblem] = p0001to0025 ::: List.empty[EulerProblem]
+  val p0050to0075 = List(
+           P0067
+  )
+  
+  val problems: List[EulerProblem] = 
+    p0001to0025 ::: 
+    p0050to0075 :::
+    List.empty[EulerProblem]
   
   def main(args: Array[String]) {
     val executor = EulerExecutor(problems)
